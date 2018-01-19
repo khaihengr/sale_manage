@@ -9,7 +9,9 @@ let mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 let MONGO_URI = process.env.MONGO_URI;
-mongoose.connect(MONGO_URI,{useMongoClient: true});
+mongoose.connect('mongodb://boss:makesign@ds153577.mlab.com:53577/sale_manage').then(()=>{
+    console.log('DB is connected ...')
+});
 
 let index = require('./routes/index');
 let users = require('./routes/users');

@@ -2,9 +2,9 @@
 let mongoose = require("mongoose");
 
 require('../models/index');
-let COMPANY = mongoose.model('Company');
+let SALER = mongoose.model('Saler');
 
 
-let add = (company)=>{
-
+let add = (saler)=>{
+    console.log(saler);
 }

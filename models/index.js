@@ -1,2 +1,2 @@
-require("./company");
-require("./saler");
+require("./m_company");
+require("./m_saler");

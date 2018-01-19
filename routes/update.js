@@ -7,14 +7,20 @@ let _ = require("lodash");
 let j = rq.jar();
 let request = rq.defaults({ jar: j });
 let path = require("path");
+let company = require("../controllers/c_company");
+
 router.get("/", async (req, res) => {
     let pageNumber = 1;
     let data = await getBasicInfo(pageNumber);
     for (let i = 0; i < data.length-1; i++){
         let phone = await getPhoneNumber(data[i].link);
         data[i].phone = phone;
+        console.log(parseInt((100/data.length)*i));
     }
-    console.log(data);
+    data.forEach(c=>{
+        company.add(c);
+    })
+    // console.log(data);
 })
 let getBasicInfo = (p)=>{
     return new Promise((resolve, reject) => {
@@ -25,16 +31,16 @@ let getBasicInfo = (p)=>{
             let i = 2;
             let data=[]
             $1(".news-v3.bg-color-white").each((d, e) => {
-                let tenDN = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i++}) > div > h2 > a`).text();
+                let name = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i++}) > div > h2 > a`).text();
                 let link = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > h2 > a`).attr("href");
-                let maSoThue = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(1) > h3 > strong > a`).text();
-                let diaChiDN = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > p > strong`).text();
-                let daiDienDN = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(4) > div:nth-child(1) > p > strong`).text();
-                let tinhThanh = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(2) > p > a > strong`).text();
-                let ngayLapDN = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(3) > p`).text();
+                let tax = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(1) > h3 > strong > a`).text();
+                let address = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > p > strong`).text();
+                let boss = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(4) > div:nth-child(1) > p > strong`).text();
+                let town = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(2) > p > a > strong`).text();
+                let date_create = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(3) > p`).text();
                 
                 d = {
-                    tenDN, maSoThue, diaChiDN, daiDienDN, tinhThanh, ngayLapDN, link
+                    name, tax, address, boss, town, date_create, link
                 }
                 data.push(d);
             });
