@@ -6,17 +6,10 @@ let COMPANY = mongoose.model('Company');
 
 
 let add = (company)=>{
-
-    COMPANY.findOne({phone:company.phone}).then(res=>{
-        if(!res){
-            let new_company = new COMPANY(company);
-            new_company.save().then((res)=>{
-                console.log(res);
-            })
-        }
+    let new_company = new COMPANY(company);
+    new_company.save().then((res)=>{
+        console.log(res);
     })
-
-
 }
 let update = (_company,_state,cb)=>{
     COMPANY.findByIdAndUpdate(_company,{state:_state},(err,res)=>{
