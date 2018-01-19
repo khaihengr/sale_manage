@@ -10,16 +10,18 @@ let path = require("path");
 let company = require("../controllers/c_company");
 
 router.get("/", async (req, res) => {
-    let pageNumber = 1;
-    let data = await getBasicInfo(pageNumber);
-    for (let i = 0; i < data.length-1; i++){
-        let phone = await getPhoneNumber(data[i].link);
-        data[i].phone = phone;
-        console.log(parseInt((100/data.length)*i));
+    // let pageNumber = 1;
+    for(let i=1;i<=465;i++){
+        let data = await getBasicInfo(i);
+        for (let i = 0; i < data.length-1; i++){
+            let phone = await getPhoneNumber(data[i].link);
+            data[i].phone = phone;
+            console.log(parseInt((100/data.length)*i));
+        }
+        data.forEach(c=>{
+            company.add(c);
+        })
     }
-    data.forEach(c=>{
-        company.add(c);
-    })
     // console.log(data);
 })
 let getBasicInfo = (p)=>{
