@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c51ce03b-d183-411a-a377-d83ba4a3206c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change beforePath="$PROJECT_DIR$/controllers/c_company.js" afterPath="$PROJECT_DIR$/controllers/c_company.js" />
-      <change beforePath="$PROJECT_DIR$/controllers/c_saler.js" afterPath="$PROJECT_DIR$/controllers/c_saler.js" />
-      <change beforePath="$PROJECT_DIR$/models/company.js" afterPath="$PROJECT_DIR$/models/m_company.js" />
-      <change beforePath="$PROJECT_DIR$/models/index.js" afterPath="$PROJECT_DIR$/models/index.js" />
-      <change beforePath="$PROJECT_DIR$/models/saler.js" afterPath="$PROJECT_DIR$/models/m_saler.js" />
-      <change beforePath="$PROJECT_DIR$/routes/update.js" afterPath="$PROJECT_DIR$/routes/update.js" />
+      <change beforePath="$PROJECT_DIR$/bin/www" afterPath="$PROJECT_DIR$/bin/www" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +49,18 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-58">
-              <caret line="36" column="41" lean-forward="true" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+            <state relative-caret-position="209">
+              <caret line="52" column="3" lean-forward="true" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -74,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="c_company.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="c_company.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_company.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -129,6 +131,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/update.js" />
         <option value="$PROJECT_DIR$/controllers/c_company.js" />
+        <option value="$PROJECT_DIR$/bin/www" />
       </list>
     </option>
   </component>
@@ -174,6 +177,11 @@
             <path>
               <item name="salemanage" type="b2602c69:ProjectViewProjectNode" />
               <item name="salemanage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="salemanage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="salemanage" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="salemanage" type="b2602c69:ProjectViewProjectNode" />
@@ -232,12 +240,12 @@
       <workItem from="1516257840223" duration="3816000" />
       <workItem from="1516290364213" duration="3546000" />
       <workItem from="1516294501623" duration="4410000" />
-      <workItem from="1516325528218" duration="2521000" />
+      <workItem from="1516325528218" duration="2749000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17061000" />
+    <option name="totallyTimeSpent" value="17289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="129" y="-4" width="1339" height="783" extended-state="6" />
@@ -530,18 +538,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/controllers/c_company.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="36" column="41" lean-forward="true" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        <state relative-caret-position="272">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/c_company.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="209">
+          <caret line="52" column="3" lean-forward="true" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
           <folding />
         </state>
       </provider>
