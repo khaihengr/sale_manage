@@ -6,8 +6,8 @@ let COMPANY = mongoose.model('Company');
 
 
 let add = (company)=>{
-    let check = new COMPANY();
-    check.findOne({phone:company.phone}).then(res=>{
+
+    COMPANY.findOne({phone:company.phone}).then(res=>{
         if(!res){
             let new_company = new COMPANY(company);
             new_company.save().then((res)=>{
