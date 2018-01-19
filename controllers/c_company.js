@@ -19,8 +19,7 @@ let add = (company)=>{
 
 }
 let update = (_company,_state,cb)=>{
-    let update_company = new COMPANY();
-    update_company.findByIdAndUpdate(_company,{state:_state},(err,res)=>{
+    COMPANY.findByIdAndUpdate(_company,{state:_state},(err,res)=>{
         if(!err){
             return cb(null,res);
         }else{
@@ -30,5 +29,5 @@ let update = (_company,_state,cb)=>{
 }
 
 module.exports={
-    add
+    add,update
 }

@@ -18,12 +18,18 @@ router.get("/", async (req, res) => {
             data[i].phone = phone;
             console.log(parseInt((100/data.length)*i));
         }
-        data.forEach(c=>{
-            company.add(c);
-        })
+        await saveDB(data);
     }
     // console.log(data);
 })
+let saveDB = (data)=>{
+    return new Promise((resolve,reject)=>{
+        data.forEach(c=>{
+            company.add(c);
+        })
+        resolve("")
+    })
+}
 let getBasicInfo = (p)=>{
     return new Promise((resolve, reject) => {
         let url = `https://www.tracuuhoso.com/page-${p}-ho-so-thai-nguyen.aspx`;
