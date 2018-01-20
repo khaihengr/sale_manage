@@ -42,6 +42,7 @@ let getBasicInfo = (p)=>{
                 let boss = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(4) > div:nth-child(1) > p > strong`).text();
                 let town = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(2) > p > a > strong`).text();
                 let date_create = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(3) > p`).text();
+                date_create=date_create.substr(11,10);
                 d = {
                     name, tax, address, boss, town, date_create, link
                 }
