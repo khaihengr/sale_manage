@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+    <% include ./partials/head %>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="companies col-9">
+            <%- include(tab) %>
+        </div>
+        <div class="sidebar col-3">
+            <% include ./partials/sidebar %>
+        </div>
+    </div>
+</div>
+    <% include ./partials/script %>
+</body>
 </html>

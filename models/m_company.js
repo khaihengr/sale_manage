@@ -4,8 +4,12 @@ let Schema = mongoose.Schema;
 
 let Company_Schame = new Schema({
     _saler:{
-        type:Schema.Types.ObjectId,
-        ref:'Saler'
+        type:String,
+        default:""
+    },
+    _saler_name:{
+        type:String,
+        default:""
     },
     name: {
         type: String,

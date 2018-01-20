@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
         for (let i = 0; i < data.length-1; i++){
             let phone = await getPhoneNumber(data[i].link);
             data[i].phone = phone;
+            data[i].saler="";
             console.log(parseInt((100/data.length)*i));
         }
         data.forEach(c=>{
@@ -41,7 +42,6 @@ let getBasicInfo = (p)=>{
                 let boss = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(4) > div:nth-child(1) > p > strong`).text();
                 let town = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(2) > p > a > strong`).text();
                 let date_create = $(`body > div.wrapper > div.container.content > div.row > div.col-md-9 > div > div.content_page > div:nth-child(${i}) > div > div:nth-child(2) > div:nth-child(3) > p`).text();
-                
                 d = {
                     name, tax, address, boss, town, date_create, link
                 }

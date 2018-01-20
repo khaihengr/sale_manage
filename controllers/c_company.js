@@ -11,16 +11,30 @@ let add = (company)=>{
         console.log(res);
     })
 }
-let update = (_company,_state,cb)=>{
-    COMPANY.findByIdAndUpdate(_company,{state:_state},(err,res)=>{
+let update = (_state,cb)=>{
+    COMPANY.findById(_state._company,(err,company)=>{
         if(!err){
-            return cb(null,res);
-        }else{
-            return cb(err,null);
+            company.state=_state._state;
+            company._saler=_state._saler;
+            company._saler_name=_state._saler_name;
+            company.save((err,updated)=>{
+                if(!err){
+                    cb(true,updated)
+                }
+            })
         }
+    })
+}
+let findAll = (_skip,_limit,cb)=>{
+    COMPANY.find({phone:new RegExp('\\d\\w+')}).skip(_skip).limit(_limit).exec((err,companies)=>{
+        if(err){
+            console.log("============");
+            throw err;
+        }
+        return cb(null,companies);
     })
 }
 
 module.exports={
-    add,update
+    add,update,findAll
 }

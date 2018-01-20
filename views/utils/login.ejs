@@ -1,0 +1,32 @@
+<%if(!user){%>
+    <h4 class="text-info">Login</h4>
+<%}%>
+<% if(user){%>
+    <h4 class="text-info">Your are login</h4>
+    <h4 class="text-info">Hello <span class="text-info"><%= user.username %></span></h4>
+<%}else{%>
+<form action="/user/login" method="post" id="login_form">
+    <div class="form-group">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="submit" class="btn btn-block btn-sm btn-primary" id="submit_btn" value="Login"/>
+        </div>
+    </div>
+</form>
+<%}%>
+<% if(user){%>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="">
+            <a href="/user/Logout" class="btn btn-block btn-sm btn-danger my-1">Logout</a>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+<%}%>

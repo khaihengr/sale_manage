@@ -1,0 +1,13 @@
+<div class="text-center p-1 bg-light rounded-top">
+    <div class="rounded bg-white p-2">
+        <% include ../utils/login %>
+    </div>
+    <br>
+    <!-- Register -->
+    <% if(user&&user.username=='admin'){%>
+    <% include ../utils/option %>
+    <%}%>
+    <div class="rounded bg-white p-2 d-none"  id="register_form">
+        <% include ../utils/register %>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="company">
+    <% companies.forEach((c)=>{%>
+    <div class="row pr-3 m-2 bg-light rounded-1">
+        <div class="col-7">
+            <div class="info font-weight-bold pl-3">
+               <div class="row mt-2">
+                   <p>Company:<span class="company-name"> <%= c.name %></span></p>
+               </div>
+               <div class="row">
+                   <div class="col ml-0 pl-0">
+                    <p>Boss:<span class="boss"> <%= c.boss %></span></p>
+                    <p>Phone:<span class="phone"> <%= c.phone %></span></p>
+                    <p>Saler:<span class="text-danger"> <%= c._saler_name %></span></p>
+                   </div>
+               </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <%if(user){%>
+            <div class="row mt-2 rp">
+                    <button value="success" class="mr-1 c_state hw btn btn-sm <%if(c.state.success){%>btn-success font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Success</button>
+                    <button value="info" class="c_state hw btn btn-sm <%if(c.state.called){%>btn-info font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Called</button>
+                   <button value="danger" class="mr-1 mt-1 c_state hw btn btn-sm <%if(c.state.call_later){%>btn-danger font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Call later</button>
+                    <button value="warning" class="mt-1 c_state hw btn btn-sm <%if(c.state.no_answer){%>btn-warning font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>No Answer</button>
+            </div>
+            <div class="row mt-2 pb-2">
+                <div class="note">
+                    <form action="/state" method="post" >
+                        <input type="text" name="_company" value="<%= c._id %>" hidden>
+                        <input type="text" name="_saler" value="<%= user._id %>" hidden>
+                        <input type="text" name="_saler_name" value="<%= user.fullname %>" hidden>
+                        <input class="child-hidden" type="text" name="_state" value="First" hidden>
+                        <input type="text" class="note form-control"name="_note" id="note" cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
+                        <input type="submit" hidden>
+                    </form>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+    <%}) %>
+</div>
