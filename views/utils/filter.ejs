@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-6">
+        <form action="/search" method="GET">
+            <div class="row">
+                <div class="col-8">
+                    <input type="text" name="search_text" class="form-control form-control-sm font-weight-bold ml-2" placeholder="Searching">
+                </div>
+                <div class="col-4 pl-0">
+                    <select class="form-control form-control-sm font-weight-bold" name="search_rules">
+                        <option class="font-weight-bold" value="company_name" selected>Company Name</option>
+                        <option class="font-weight-bold" value="boss_name">Boss Name</option>
+                        <option class="font-weight-bold" value="phone_number">Phone Number</option>
+                    </select>
+                </div>
+                <input type="submit" hidden>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <form action="/filter" method="get" id="f_filter">
+            <div class="col-4">
+                    <select id="_filter" class="form-control form-control-sm font-weight-bold" name="filter_rules">
+                        <option >Fill State</option>
+                        <option class="font-weight-bold" value="success">Success</option>
+                        <option class="font-weight-bold" value="called">Called</option>
+                        <option class="font-weight-bold" value="call_later">Call Later</option>
+                        <option class="font-weight-bold" value="no_answer">No Answer</option>
+                    </select>
+            </div>
+            <input type="submit" hidden>
+        </form>
+    </div>
+</div>

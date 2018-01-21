@@ -34,7 +34,56 @@ let findAll = (_skip,_limit,cb)=>{
         return cb(null,companies);
     })
 }
-
+let find_by_company_name=(_skip,_company,cb)=>{
+    COMPANY.find({'name':new RegExp(_company,'i')}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let find_by_boss_name=(_skip,_boss,cb)=>{
+    COMPANY.find({'boss':new RegExp(_boss,'i')}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let find_by_phone_number=(_skip,_phone,cb)=>{
+    COMPANY.find({'phone':new RegExp(_phone,'i')}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let filter_by_success = (_skip,cb)=>{
+    COMPANY.find({'state.success':true}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let filter_by_called = (_skip,cb)=>{
+    COMPANY.find({'state.called':true}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let filter_by_call_later = (_skip,cb)=>{
+    COMPANY.find({'state.call_later':true}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
+let filter_by_no_anwser = (_skip,cb)=>{
+    COMPANY.find({'state.no_answer':true}).skip(_skip).limit(10).exec((err,companies)=>{
+        if(!err){
+            cb(true,companies);
+        }
+    })
+}
 module.exports={
-    add,update,findAll
+    add,update,findAll,find_by_boss_name,find_by_company_name,find_by_phone_number,
+    filter_by_no_anwser,filter_by_call_later,filter_by_called,filter_by_success
 }

@@ -30,7 +30,7 @@
                         <input type="text" name="_saler" value="<%= user._id %>" hidden>
                         <input type="text" name="_saler_name" value="<%= user.fullname %>" hidden>
                         <input class="child-hidden" type="text" name="_state" value="First" hidden>
-                        <input type="text" class="note form-control"name="_note" id="note" cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
+                        <input type="text" class="note form-control" name="_note" id="note" cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
                         <input type="submit" hidden>
                     </form>
                 </div>
@@ -39,4 +39,67 @@
         </div>
     </div>
     <%}) %>
+    <%if(typeof page!='undefined'){%>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination just  d-flex justify-content-center">
+            <li class="page-item <% if(page<=1){%>disabled<%}%>">
+                <a class="page-link" href="/page?page=<%= page-1 %>" aria-label="Previous" >
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="/page?page=<%= page %>"><%= page %></a></li>
+            <li class="page-item "><a class="page-link" href="/page?page=<%= page+1 %>"><%= page+1 %></a></li>
+            <li class="page-item"><a class="page-link" href="/page?page=<%= page+2 %>"><%= page+2 %></a></li>
+            <li class="page-item">
+                <a class="page-link" href="/page?page=<%= page+3 %>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <%}%>
+    <%if(typeof page_s!='undefined'){%>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination just  d-flex justify-content-center">
+            <li class="page-item <% if(page_s<=1){%>disabled<%}%>">
+                <a class="page-link" href="/search?page=<%= (page_s-1)+(_search_text) %>" aria-label="Previous" >
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="/search?page=<%= (page_s)+(_search_text) %>"><%= page_s %></a></li>
+            <li class="page-item "><a class="page-link" href="/search?page=<%= (parseInt(page_s)+1)+(_search_text) %>"><%= (parseInt(page_s)+1) %></a></li>
+            <li class="page-item"><a class="page-link" href="/search?page=<%= (parseInt(page_s)+2)+(_search_text) %>"><%= parseInt(page_s)+2 %></a></li>
+            <li class="page-item">
+                <a class="page-link" href="/search?page=<%= (parseInt(page_s)+3)+(_search_text) %>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <%}%>    <%if(typeof page_f!='undefined'){%>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination just  d-flex justify-content-center">
+            <li class="page-item <% if(page_f<=1){%>disabled<%}%>">
+                <a class="page-link" href="/filter?page=<%= (page_f-1)+(_filter_text) %>" aria-label="Previous" >
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="/filter?page=<%= (page_f)+(_filter_text) %>"><%= page_f %></a></li>
+            <li class="page-item "><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+1)+(_filter_text) %>"><%= (parseInt(page_f)+1) %></a></li>
+            <li class="page-item"><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+2)+(_filter_text) %>"><%= parseInt(page_f)+2 %></a></li>
+            <li class="page-item">
+                <a class="page-link" href="/search?page=<%= (parseInt(page_f)+3)+(_filter_text) %>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <%}%>
+
 </div>
