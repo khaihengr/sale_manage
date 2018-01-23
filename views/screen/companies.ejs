@@ -1,6 +1,26 @@
 <div class="company">
+
     <% companies.forEach((c)=>{%>
     <div class="row pr-3 m-2 bg-light rounded-1">
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="<%= c._id %>" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div id="modal" class="card center bg-pr">
+                        <div class="card-body pb-0">
+                            <p class="  font-weight-bold card-text font-weight-bold text-primary"><%= c.name %></p><hr>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Boss: </span> <%= c.boss %> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span> <%= c.phone%> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Tax: </span> <%= c.tax %></p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Address: </span> <%= c.address %> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Town: </span> <%= c.town %> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Create: </span> <%= c.date_create %> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Link: </span> <a href="<%= c.link %>">Go</a> </p>
+                            <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span> <%= c.phone %> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-7">
             <div class="info font-weight-bold pl-3">
                <div class="row mt-2">
@@ -11,6 +31,11 @@
                     <p>Boss:<span class="boss"> <%= c.boss %></span></p>
                     <p>Phone:<span class="phone"> <%= c.phone %></span></p>
                     <p>Saler:<span class="text-danger"> <%= c._saler_name %></span></p>
+                   </div>
+                   <div class="col d-flex justify-content-end align-items-end">
+                       <button class=" btn btn-sm btn-outline-dark mb-2 rounded-5" data-toggle="modal" data-target="#<%= c._id %>">
+                           <i class="fa fa-caret-down" aria-hidden="true"></i>
+                       </button>
                    </div>
                </div>
             </div>
@@ -25,12 +50,12 @@
             </div>
             <div class="row mt-2 pb-2">
                 <div class="note">
-                    <form action="/state" method="post" >
+                    <form action="/state" method="post" class="state_form" >
                         <input type="text" name="_company" value="<%= c._id %>" hidden>
                         <input type="text" name="_saler" value="<%= user._id %>" hidden>
                         <input type="text" name="_saler_name" value="<%= user.fullname %>" hidden>
                         <input class="child-hidden" type="text" name="_state" value="First" hidden>
-                        <input type="text" class="note form-control" name="_note" id="note" cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
+                        <input type="text"  class="_note form-control" name="_note"  cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
                         <input type="submit" hidden>
                     </form>
                 </div>
