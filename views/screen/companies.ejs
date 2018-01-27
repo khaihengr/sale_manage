@@ -1,130 +1,114 @@
 <div class="company">
-
+    
     <% companies.forEach((c)=>{%>
-    <div class="row pr-3 m-2 bg-light rounded-1">
-        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="<%= c._id %>" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div id="modal" class="card center bg-pr">
-                        <div class="card-body pb-0">
-                            <p class="  font-weight-bold card-text font-weight-bold text-primary"><%= c.name %></p><hr>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Boss: </span> <%= c.boss %> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span> <%= c.phone%> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Tax: </span> <%= c.tax %></p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Address: </span> <%= c.address %> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Town: </span> <%= c.town %> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Create: </span> <%= c.date_create %> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Link: </span> <a href="<%= c.link %>">Go</a> </p>
-                            <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span> <%= c.phone %> </p>
+        <div class="row pr-3 m-2 bg-light rounded-1">
+            <% include ../modals/com_detail %>
+            <div class="col-7">
+                <div class="info font-weight-bold pl-3">
+                    <div class="row mt-2">
+                        <p>Company:<span class="company-name"> <%= c.name %></span></p>
+                    </div>
+                    <div class="row">
+                        <div class="col ml-0 pl-0">
+                            <p>Boss:<span class="boss"> <%= c.boss %></span></p>
+                            <p>Phone:<span class="phone"> <%= c.phone %></span></p>
+                            <p>Saler:<span class="text-danger"> <%= c._saler_name %></span></p>
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-end">
+                            <% if(user){%>
+                                <button class=" btn btn-sm btn-outline-dark mb-2 rounded-5" data-toggle="modal" data-target="#<%= c._id %>">
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <%} %>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-7">
-            <div class="info font-weight-bold pl-3">
-               <div class="row mt-2">
-                   <p>Company:<span class="company-name"> <%= c.name %></span></p>
-               </div>
-               <div class="row">
-                   <div class="col ml-0 pl-0">
-                    <p>Boss:<span class="boss"> <%= c.boss %></span></p>
-                    <p>Phone:<span class="phone"> <%= c.phone %></span></p>
-                    <p>Saler:<span class="text-danger"> <%= c._saler_name %></span></p>
-                   </div>
-                   <div class="col d-flex justify-content-end align-items-end">
-                       <button class=" btn btn-sm btn-outline-dark mb-2 rounded-5" data-toggle="modal" data-target="#<%= c._id %>">
-                           <i class="fa fa-caret-down" aria-hidden="true"></i>
-                       </button>
-                   </div>
-               </div>
-            </div>
-        </div>
-        <div class="col-5">
-            <%if(user){%>
-            <div class="row mt-2 rp">
-                    <button value="success" class="mr-1 c_state hw btn btn-sm <%if(c.state.success){%>btn-success font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Success</button>
-                    <button value="info" class="c_state hw btn btn-sm <%if(c.state.called){%>btn-info font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Called</button>
-                   <button value="danger" class="mr-1 mt-1 c_state hw btn btn-sm <%if(c.state.call_later){%>btn-danger font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Call later</button>
-                    <button value="warning" class="mt-1 c_state hw btn btn-sm <%if(c.state.no_answer){%>btn-warning font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>No Answer</button>
-            </div>
-            <div class="row mt-2 pb-2">
-                <div class="note">
-                    <form action="/state" method="post" class="state_form" >
-                        <input type="text" name="_company" value="<%= c._id %>" hidden>
-                        <input type="text" name="_saler" value="<%= user._id %>" hidden>
-                        <input type="text" name="_saler_name" value="<%= user.fullname %>" hidden>
-                        <input class="child-hidden" type="text" name="_state" value="First" hidden>
-                        <input type="text"  class="_note form-control" name="_note"  cols="30" rows="10" <%if(c._saler!=''&&user.fullname!=c._saler){%>disabled<%}%> value="<%= c.state.note %>">
-                        <input type="submit" hidden>
-                    </form>
+            <div class="col-5">
+                <%if(user){%>
+                    <div class="row mt-2 rp">
+                        <button value="success" class="mr-1 c_state hw btn btn-sm <%if(c.state.success){%>btn-success font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Success</button>
+                        <button value="info" class="c_state hw btn btn-sm <%if(c.state.called){%>btn-info font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Called</button>
+                        <button value="danger" class="mr-1 mt-1 c_state hw btn btn-sm <%if(c.state.call_later){%>btn-danger font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>Call later</button>
+                        <button value="warning" class="mt-1 c_state hw btn btn-sm <%if(c.state.no_answer){%>btn-warning font-weight-bold<%}else{%>btn-outline-dark<%}%>"<%if(c._saler!=''&&user.fullname!=c._saler&&user.username!='admin'){%>disabled<%}%>>No Answer</button>
+                    </div>
+                    <div class="row mt-2 pb-2">
+                        <div class="note">
+                            <form action="/state" method="post" class="state_form" >
+                                <input type="text" name="_company" value="<%= c._id %>" hidden>
+                                <input type="text" name="_saler" value="<%= user._id %>" hidden>
+                                <input type="text" name="_saler_name" value="<%= user.fullname %>" hidden>
+                                <input class="child-hidden" type="text" name="_state" value="First" hidden>
+                                <input type="text"  class="_note form-control" name="_note"  cols="30" rows="10" <%if(user.username!="admin"&&c.state.note!=""){%>disabled<%}%> value="<%= c.state.note %>">
+                                <input type="submit" hidden>
+                            </form>
+                        </div>
+                    </div>
+                    <%}%>
                 </div>
             </div>
-            <%}%>
-        </div>
-    </div>
-    <%}) %>
-    <%if(typeof page!='undefined'){%>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination just  d-flex justify-content-center">
-            <li class="page-item <% if(page<=1){%>disabled<%}%>">
-                <a class="page-link" href="/page?page=<%= page-1 %>" aria-label="Previous" >
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="/page?page=<%= page %>"><%= page %></a></li>
-            <li class="page-item "><a class="page-link" href="/page?page=<%= page+1 %>"><%= page+1 %></a></li>
-            <li class="page-item"><a class="page-link" href="/page?page=<%= page+2 %>"><%= page+2 %></a></li>
-            <li class="page-item">
-                <a class="page-link" href="/page?page=<%= page+3 %>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <%}%>
-    <%if(typeof page_s!='undefined'){%>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination just  d-flex justify-content-center">
-            <li class="page-item <% if(page_s<=1){%>disabled<%}%>">
-                <a class="page-link" href="/search?page=<%= (page_s-1)+(_search_text) %>" aria-label="Previous" >
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="/search?page=<%= (page_s)+(_search_text) %>"><%= page_s %></a></li>
-            <li class="page-item "><a class="page-link" href="/search?page=<%= (parseInt(page_s)+1)+(_search_text) %>"><%= (parseInt(page_s)+1) %></a></li>
-            <li class="page-item"><a class="page-link" href="/search?page=<%= (parseInt(page_s)+2)+(_search_text) %>"><%= parseInt(page_s)+2 %></a></li>
-            <li class="page-item">
-                <a class="page-link" href="/search?page=<%= (parseInt(page_s)+3)+(_search_text) %>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <%}%>    <%if(typeof page_f!='undefined'){%>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination just  d-flex justify-content-center">
-            <li class="page-item <% if(page_f<=1){%>disabled<%}%>">
-                <a class="page-link" href="/filter?page=<%= (page_f-1)+(_filter_text) %>" aria-label="Previous" >
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="/filter?page=<%= (page_f)+(_filter_text) %>"><%= page_f %></a></li>
-            <li class="page-item "><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+1)+(_filter_text) %>"><%= (parseInt(page_f)+1) %></a></li>
-            <li class="page-item"><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+2)+(_filter_text) %>"><%= parseInt(page_f)+2 %></a></li>
-            <li class="page-item">
-                <a class="page-link" href="/search?page=<%= (parseInt(page_f)+3)+(_filter_text) %>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <%}%>
-
-</div>
+            <%}) %>
+            <%if(typeof page!='undefined'){%>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination just  d-flex justify-content-center">
+                        <li class="page-item <% if(page<=0){%>disabled<%}%>">
+                            <a class="page-link" href="/page?page=<%= page-1 %>" aria-label="Previous" >
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="/page?page=<%= page %>"><%= page %></a></li>
+                        <li class="page-item "><a class="page-link" href="/page?page=<%= page+1 %>"><%= page+1 %></a></li>
+                        <li class="page-item"><a class="page-link" href="/page?page=<%= page+2 %>"><%= page+2 %></a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="/page?page=<%= page+3 %>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <%}%>
+                <%if(typeof page_s!='undefined'){%>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination just  d-flex justify-content-center">
+                            <li class="page-item <% if(page_s<=1){%>disabled<%}%>">
+                                <a class="page-link" href="/search?page=<%= (page_s-1)+(_search_text) %>" aria-label="Previous" >
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="/search?page=<%= (page_s)+(_search_text) %>"><%= page_s %></a></li>
+                            <li class="page-item "><a class="page-link" href="/search?page=<%= (parseInt(page_s)+1)+(_search_text) %>"><%= (parseInt(page_s)+1) %></a></li>
+                            <li class="page-item"><a class="page-link" href="/search?page=<%= (parseInt(page_s)+2)+(_search_text) %>"><%= parseInt(page_s)+2 %></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="/search?page=<%= (parseInt(page_s)+3)+(_search_text) %>" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <%}%>    <%if(typeof page_f!='undefined'){%>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination just  d-flex justify-content-center">
+                                <li class="page-item <% if(page_f<=1){%>disabled<%}%>">
+                                    <a class="page-link" href="/filter?page=<%= (page_f-1)+(_filter_text) %>" aria-label="Previous" >
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="/filter?page=<%= (page_f)+(_filter_text) %>"><%= page_f %></a></li>
+                                <li class="page-item "><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+1)+(_filter_text) %>"><%= (parseInt(page_f)+1) %></a></li>
+                                <li class="page-item"><a class="page-link" href="/filter?page=<%= (parseInt(page_f)+2)+(_filter_text) %>"><%= parseInt(page_f)+2 %></a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/search?page=<%= (parseInt(page_f)+3)+(_filter_text) %>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <%}%>
+                        
+                    </div>

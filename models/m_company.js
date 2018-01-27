@@ -33,7 +33,7 @@ let Company_Schame = new Schema({
     },
     date_create:{
         type:String,
-        default:""
+        default: ""
     },
     link:{
         type:String,

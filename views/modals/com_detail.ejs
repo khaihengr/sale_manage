@@ -1,0 +1,20 @@
+<div class="pr_modal modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="<%= c._id %>" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div id="modal" class="card center bg-pr">
+                <div class="card-body pb-0">
+                    <p class=" font-weight-bold card-text font-weight-bold text-primary"><span class="data-name"><%= c.name %></span></p><hr>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Boss: </span> <span class="data-boss"><%= c.boss %></span> </p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span> <span class="data-phone"><%= c.phone%></span> </p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Tax: </span> <span class="data-tax"><%= c.tax %></span></p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Address: </span> <span class="data-address"><%= c.address %> </span></p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Town: </span> <span class="data-town"><%= c.town %> </span></p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Create: </span> <span class="data-date_create"><%= c.date_create %></span> </p>
+                    <p class=" font-weight-bold pt-0 pb-0"><span>Link: </span> <a class="data-link" href="<%= c.link %>">Go</a> </p>
+                </div>
+                <button type="submit" name="" class="edit_com_num mr-4 ml-4 btn btn-sm mb-3
+                text-white bg-warning"  data-toggle="modal" data-target="#edit_com"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

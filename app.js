@@ -8,10 +8,10 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let passport = require("passport");
 let session = require("express-session");
-
+require("dotenv").config();
 mongoose.Promise = global.Promise;
 // let MONGO_URI = process.env.MONGO_URI;
-mongoose.connect('mongodb://boss:makesign@ds153577.mlab.com:53577/sale_manage').then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log('DB is connected ...')
 });
 

@@ -9,7 +9,7 @@ let request = rq.defaults({ jar: j });
 let path = require("path");
 let company = require("../controllers/c_company");
 
-router.get("/", async (req, res) => {
+router.get("/upgrade", async (req, res) => {
     // let pageNumber = 1;
     for(let i=1;i<=465;i++){
         let data = await getBasicInfo(i);
@@ -20,7 +20,11 @@ router.get("/", async (req, res) => {
             console.log(parseInt((100/data.length)*i));
         }
         data.forEach(c=>{
-            company.add(c);
+            company.add(c, (st, result) => {
+                if (st) {
+                            
+                }
+            });
         })
     }
     // console.log(data);

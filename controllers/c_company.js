@@ -5,18 +5,40 @@ require('../models/index');
 let COMPANY = mongoose.model('Company');
 
 
-let add = (company)=>{
+let add = (company,cb)=>{
     let new_company = new COMPANY(company);
     new_company.save().then((res)=>{
-        console.log(res);
+        if (res) {
+            cb(true, res);
+        } else {
+            cb(false, res);
+        }
     })
 }
-let update = (_state,cb)=>{
+let update_state = (_state,cb)=>{
     COMPANY.findById(_state._company,(err,company)=>{
         if(!err){
             company.state=_state._state;
             company._saler=_state._saler;
             company._saler_name=_state._saler_name;
+            company.save((err,updated)=>{
+                if(!err){
+                    cb(true,updated)
+                }
+            })
+        }
+    })
+}
+let update_comp = (comp,cb)=>{
+    COMPANY.findById(comp._id,(err,company)=>{
+        if(!err){
+            company.link=comp._state;
+            company.phone=comp.phone;
+            company.name=comp.name;
+            company.town=comp.town;
+            company.boss=comp.boss;
+            company.date_create=comp.date_create;
+            company.address=comp.address;
             company.save((err,updated)=>{
                 if(!err){
                     cb(true,updated)
@@ -84,6 +106,6 @@ let filter_by_no_anwser = (_skip,cb)=>{
     })
 }
 module.exports={
-    add,update,findAll,find_by_boss_name,find_by_company_name,find_by_phone_number,
-    filter_by_no_anwser,filter_by_call_later,filter_by_called,filter_by_success
+    add,update_state,findAll,find_by_boss_name,find_by_company_name,find_by_phone_number,
+    filter_by_no_anwser,filter_by_call_later,filter_by_called,filter_by_success,update_comp
 }

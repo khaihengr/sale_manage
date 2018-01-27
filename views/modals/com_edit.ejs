@@ -1,0 +1,35 @@
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="edit_com" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div id="modal" class="card center bg-pr">
+                <div class="card-body pb-0">
+                    <form action="/update" method="post" id="edit_form">
+                        <!-- <input type="text" name="_saler" value="" hidden>
+                        <input type="text" name="_id" value="" hidden> -->
+                        <input type="hidden" name="_id" value="">
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Company name: </span>  <input value="asdsa" class="name form-control form-control-sm font-weight-bold ml-2" type="text" name="name"></p>
+                        
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Boss: </span>  <input value="" class="boss form-control form-control-sm font-weight-bold ml-2" type="text" name="boss"></p>
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Phone: </span>
+                            <input value="" class="phone form-control form-control-sm font-weight-bold ml-2" type="text" name="phone">
+                        </p>
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Address: </span>
+                            <input value="" class="address form-control form-control-sm font-weight-bold ml-2" type="text" name="address">
+                        </p>
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Town: </span>
+                            <input value="" class="town form-control form-control-sm font-weight-bold ml-2" type="text" name="town">
+                        </p>
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Date create: </span>
+                            <input value="" class="town form-control form-control-sm font-weight-bold ml-2" type="text" name="date_create">
+                        </p>
+                        <p class=" font-weight-bold pt-0 pb-0"><span>Link: </span>
+                            <input value="" class="link form-control form-control-sm font-weight-bold ml-2" type="text" name="link">
+                        </p>
+                        <button type="submit" name="" class="btn-block m-1 btn btn-sm text-white bg-success">Update</button>
+                        <input value="" type="submit" name="" hidden>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

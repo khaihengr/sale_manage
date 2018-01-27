@@ -2,15 +2,22 @@ let express = require('express');
 let router = express.Router();
 let company = require('../controllers/c_company');
 let saler = require('../controllers/c_saler');
-
+let moment = require("moment");
 /* GET home page. */
+router.post("/update", (req, res) => {
+    let comp = req.body;
+    company.update_comp(comp, (st, re) => {
+        if (comp) {
+            // res.redirect('/')
+        }
+    })
+    res.redirect('/');
+})
 router.get('/filter',(req,res)=>{
     let _filter =req.query.filter_rules;
     let _filter_text=`&filter_rules=${_filter}`
     let _page = req.query.page||0;
     let _skip = parseInt(_page)*10;
-
-
     switch (_filter){
         case 'no_answer':{
             company.filter_by_no_anwser(_skip,(state,companies)=>{
@@ -90,8 +97,18 @@ router.get('/', async function(req, res, next) {
         }
     })
 });
+router.post('/add', (req, res) => {
+    let com = req.body;
+    com.date_create = moment().format("DD/MM/YYYY");
+    company.add(com, (st,r) => {
+        if (st) {
+            
+        }
+    });
+    res.redirect('/');
+})
 router.get('/page', (req, res) => {
-    let page = (parseInt(req.query.page)-1) * 10;
+    let page = (parseInt(req.query.page)) * 10;
     
     company.findAll(page,10,(err,companies)=>{
         if(!err){
@@ -107,7 +124,7 @@ router.get('/page', (req, res) => {
                 })
             }
             setTimeout(()=>{
-                res.render("index",{tab:"screen/companies",companies,page:(page/10)+1})
+                res.render("index",{tab:"screen/companies",companies,page:(page/10)})
             },1000)
         }
     })
@@ -125,7 +142,7 @@ router.post('/state',(req,res)=>{
     state[_state._state]=true;
     _state._state=state;
     console.log(_state);
-    company.update(_state,(isdone,done)=>{
+    company.update_state(_state,(isdone,done)=>{
         res.redirect('/')
     })
 })
